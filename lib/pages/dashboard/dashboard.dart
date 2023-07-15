@@ -1,15 +1,14 @@
 import 'package:driver_app/cubits/order_retrieval/order_retrieval_cubit.dart';
 import 'package:driver_app/states/mulch_order_state.dart';
+import 'package:driver_app/utils/map_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
 
 // import 'package:project3_ui/cubits/assignments/assignments_cubit.dart';
 // import 'package:project3_ui/pages/student/submit_assignment/assignment_view.dart';
 // import 'package:project3_ui/cubits/submissions/submissions_cubit.dart';
 // import 'package:project3_ui/cubits/states/assignment_state.dart';
-
 
 // import 'package:project3_ui/pages/student/student_grade_report/student_grade_report.dart';
 // import 'package:project3_ui/cubits/grade_reports/student_grade_report_cubit.dart';
@@ -44,21 +43,19 @@ class Dashboard extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final order = state.orders[index];
                         return ListTile(
-                          // onTap: () {
-                          //   var subCubit =
-                          //       BlocProvider.of<SubmissionCubit>(context);
-                          //   subCubit.emitInit(); // Emit the initial state
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             AssignmentView(assignment: assignment)),
-                          //   );
-                          // },
+                          onTap: () {
+                            NavigationUtils.navigateTo(order.getFullAddress());
+                          },
                           title: Center(child: Text(order.customerName)),
                           subtitle: Center(
-                            child: Text(
-                                "Delivery Date: ${DateFormat.yMMMd().format(order.deliveryDate)}"),
+                            child: Column(
+                              children: [
+                                Text(
+                                    "Time Slot: ${DateFormat.Hm().format(order.deliveryIntervalStart)} - ${DateFormat.Hm().format(order.deliveryIntervalEnd.toLocal())}"),
+                                Text(
+                                    "${order.numberScoops} ${order.mulchType}"),
+                              ],
+                            ),
                           ),
                         );
                       },
@@ -69,7 +66,7 @@ class Dashboard extends StatelessWidget {
                         height: 20,
                         child: Center(child: CircularProgressIndicator()));
                   } else {
-                    return const Text('Unknown State');
+                    return Text(state.toString());
                   }
                 },
               ),

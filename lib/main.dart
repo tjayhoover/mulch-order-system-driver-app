@@ -23,7 +23,7 @@ void main() async {
     child: MaterialApp(
       title: 'Mulch Order Delivery App',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LogInPage(),
