@@ -31,7 +31,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-/mock_order_data/
+/mock_order_data
 
 # Symbolication related
 app.*.symbols
