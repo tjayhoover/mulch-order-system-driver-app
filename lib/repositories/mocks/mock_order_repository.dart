@@ -1,7 +1,8 @@
-import 'package:driver_app/entities/mulch_order.dart';
+import 'package:driver_app/models/mulch_order.dart';
 import 'package:driver_app/repositories/order_repository.dart';
 
 class MockOrderRepository implements OrderRepository {
+  MockOrderRepository()
   @override
   List<MulchOrder> getOrdersForToday() {
     var response = <MulchOrder>[];

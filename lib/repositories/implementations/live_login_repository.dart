@@ -1,5 +1,5 @@
 import 'package:driver_app/repositories/login_repository.dart';
-import 'package:driver_app/entities/user.dart';
+import 'package:driver_app/models/user.dart';
 import 'dart:convert';
 
 // TODO: Don't use HTTP

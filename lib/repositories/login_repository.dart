@@ -1,4 +1,4 @@
-import 'package:driver_app/entities/user.dart';
+import 'package:driver_app/models/user.dart';
 
 abstract class LoginRepository {
   User? user;

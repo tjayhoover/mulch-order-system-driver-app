@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:driver_app/entities/user.dart';
+import 'package:driver_app/models/user.dart';
 
 abstract class LoginState extends Equatable {}
 
