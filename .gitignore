@@ -31,7 +31,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-/mock_order_data
+/sample_mulch_orders
+lib/sample_orders_array.dart
 
 # Symbolication related
 app.*.symbols

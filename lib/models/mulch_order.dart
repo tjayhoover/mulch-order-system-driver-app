@@ -10,8 +10,8 @@ class MulchOrder {
   final DateTime deliveryIntervalStart;
   final DateTime deliveryIntervalEnd;
   final DateTime? deliveredTime;
-  final double totalBalance;
-  final double balanceDue;
+  final int totalBalance;
+  final int balanceDue;
   final int numberScoops;
 
   String getFullAddress() {
@@ -27,7 +27,9 @@ class MulchOrder {
         orderDate = DateTime.parse(json['orderDate']),
         deliveryIntervalStart = DateTime.parse(json['deliveryIntervalStart']),
         deliveryIntervalEnd = DateTime.parse(json['deliveryIntervalEnd']),
-        deliveredTime = (json['deliveredTime'] == null) ? null : DateTime.parse(json['deliveredTime']),
+        deliveredTime = (json['deliveredTime'] == null)
+            ? null
+            : DateTime.parse(json['deliveredTime']),
         totalBalance = json['totalBalance'],
         balanceDue = json['balanceDue'],
         numberScoops = json['numberScoops'];

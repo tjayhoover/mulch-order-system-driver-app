@@ -13,7 +13,7 @@ class MulchOrderCubit extends Cubit<MulchOrderState> {
     try {
       emit(MulchOrderLoadingState());
       final orders = orderRepo.getOrdersForToday();
-      emit(MulchOrdersLoadedState(orders));
+      emit(MulchOrdersLoadedState(await orders));
     } catch (e) {
       print(e);
       emit(MulchOrderFailureState());
