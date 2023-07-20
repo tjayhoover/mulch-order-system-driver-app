@@ -13,10 +13,14 @@ import 'package:intl/intl.dart';
 // import 'package:project3_ui/pages/student/student_grade_report/student_grade_report.dart';
 // import 'package:project3_ui/cubits/grade_reports/student_grade_report_cubit.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
+  @override
+  DashboardState createState() => DashboardState();
+}
 
-  void selectAssignment() {}
+class DashboardState extends State<Dashboard> {
+  List<int> selectedOrders = [];
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +46,85 @@ class Dashboard extends StatelessWidget {
                       itemCount: state.orders.length,
                       itemBuilder: (context, index) {
                         final order = state.orders[index];
-                        return ListTile(
-                          onTap: () {
-                            NavigationUtils.navigateTo(order.getFullAddress());
-                          },
-                          title: Center(child: Text(order.customerName)),
-                          subtitle: Center(
-                            child: Column(
-                              children: [
-                                Text(
-                                    "Time Slot: ${DateFormat.Hm().format(order.deliveryIntervalStart)} - ${DateFormat.Hm().format(order.deliveryIntervalEnd.toLocal())}"),
-                                Text(
-                                    "${order.numberScoops} ${order.mulchType}"),
-                              ],
+                        return Card(
+                          color: selectedOrders.contains(index)
+                              ? Colors.lightGreen.shade300
+                              : Colors.transparent,
+                          child: ListTile(
+                            onTap: () {
+                              setState(() {
+                                if (selectedOrders.contains(index)) {
+                                  selectedOrders.remove(index);
+                                } else {
+                                  if (selectedOrders.length >= 2) {
+                                    selectedOrders.removeAt(0);
+                                  }
+                                  selectedOrders.add(index);
+                                }
+                              });
+                              showDialog<void>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                        title: const Text('Selected Orders'),
+                                        content: SizedBox(
+                                          height: 200,
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: ListView.builder(
+                                                itemCount:
+                                                    selectedOrders.length,
+                                                itemBuilder: (context, index) {
+                                                  return Card(
+                                                      child: ListTile(
+                                                    title: Text(
+                                                        'Name : ${state.orders[index]}'),
+                                                    subtitle: Center(
+                                                      child: Column(
+                                                        children: [
+                                                          Text(
+                                                              "Time Slot: ${DateFormat.Hm().format(state.orders[index].deliveryIntervalStart)} - ${DateFormat.Hm().format(state.orders[index].deliveryIntervalEnd.toLocal())}"),
+                                                          Text(
+                                                              "${state.orders[index].numberScoops} ${state.orders[index].mulchType}"),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ));
+                                                }),
+                                          ),
+                                        ),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: const Text('Add Stop'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                          TextButton(
+                                            child: const Text('Go'),
+                                            onPressed: () {
+                                              // Launch maps application
+                                              NavigationUtils.navigateTo(
+                                                  order.getFullAddress());
+                                              // Navigate to "in progress" screen
+                                              //Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      ));
+
+                              //
+                            },
+                            title: Center(child: Text(order.customerName)),
+                            subtitle: Center(
+                              child: Column(
+                                children: [
+                                  Text(
+                                      "Time Slot: ${DateFormat.Hm().format(order.deliveryIntervalStart)} - ${DateFormat.Hm().format(order.deliveryIntervalEnd.toLocal())}"),
+                                  Text(
+                                      "${order.numberScoops} ${order.mulchType}"),
+                                ],
+                              ),
                             ),
                           ),
                         );
