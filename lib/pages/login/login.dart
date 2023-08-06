@@ -69,7 +69,7 @@ class LogInPage extends StatelessWidget {
                 bloc.getOrders();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
+                  MaterialPageRoute(builder: (context) => const Dashboard()),
                 );
               } else if (state is LoginFailureState) {
                 showDialog<void>(
