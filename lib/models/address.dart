@@ -21,4 +21,9 @@ class Address {
         'state': state,
         'zip': zip
       };
+
+  @override
+  String toString() {
+    return "$number $street, $town, $state $zip";
+  }
 }

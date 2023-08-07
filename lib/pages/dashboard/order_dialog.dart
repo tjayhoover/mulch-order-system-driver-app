@@ -1,12 +1,31 @@
+import 'package:driver_app/models/mulch_order.dart';
 import 'package:flutter/material.dart';
 
-
 class OrderDialogue extends StatelessWidget {
-  const OrderDialogue({super.key});
-
+  OrderDialogue(this.chosenOrders, {super.key});
+  final List<MulchOrder> chosenOrders;
   @override
   Widget build(BuildContext context) {
-    return const AlertDialog(title: Text("Hello!"), content: Text("Content"));
+    if (chosenOrders.length == 1) {
+      return AlertDialog(
+          title: const Text("Your Trip"),
+          content: SizedBox(
+            height: 200,
+            child: Column(children: [
+              Text(chosenOrders.first.customerName),
+              Text(
+                  "${chosenOrders.first.numberScoops.toString()} ${chosenOrders.first.mulchType}"),
+              Text(chosenOrders.first.address.toString()),
+            ]),
+          ));
+    } else if (chosenOrders.length == 2) {
+      return AlertDialog();
+    } else {
+      return const AlertDialog(
+        title: Text('Error'),
+        content: Text('You may only select up to two orders at a time.'),
+      );
+    }
   }
 }
 

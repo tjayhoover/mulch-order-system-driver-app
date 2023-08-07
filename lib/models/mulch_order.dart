@@ -14,10 +14,6 @@ class MulchOrder {
   final int balanceDue;
   final int numberScoops;
 
-  String getFullAddress() {
-    return "${address.number} ${address.street} ${address.town} ${address.state} ${address.zip}";
-  }
-
   MulchOrder.fromJson(Map<String, dynamic> json)
       : orderNumber = json['orderNumber'],
         customerName = json['customerName'],
