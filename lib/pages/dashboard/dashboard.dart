@@ -7,23 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'order_dialog.dart';
 
-// import 'package:project3_ui/cubits/assignments/assignments_cubit.dart';
-// import 'package:project3_ui/pages/student/submit_assignment/assignment_view.dart';
-// import 'package:project3_ui/cubits/submissions/submissions_cubit.dart';
-// import 'package:project3_ui/cubits/states/assignment_state.dart';
-
-// import 'package:project3_ui/pages/student/student_grade_report/student_grade_report.dart';
-// import 'package:project3_ui/cubits/grade_reports/student_grade_report_cubit.dart';
-
-class Dashboard extends StatefulWidget {
+class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
-  @override
-  DashboardState createState() => DashboardState();
-}
-
-class DashboardState extends State<Dashboard> {
-  List<int> selectedOrders = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,33 +33,12 @@ class DashboardState extends State<Dashboard> {
                     itemBuilder: (context, index) {
                       final order = state.orders[index];
                       return Card(
-                        color: selectedOrders.contains(index)
-                            ? Colors.lightGreen.shade300
-                            : Colors.transparent,
                         child: ListTile(
                           onTap: () {
-                            setState(() {
-                              // TODO: refine this logic
-                              if (selectedOrders.contains(index)) {
-                                selectedOrders.remove(index);
-                              } else {
-                                if (selectedOrders.length >= 2) {
-                                  selectedOrders.removeAt(0);
-                                }
-                                selectedOrders.add(index);
-                              }
-                            });
-                            List<MulchOrder> chosenOrders = [];
-
-                            // TODO: refine this logic
-                            for (int i in selectedOrders) {
-                              chosenOrders.add(state.orders[i]);
-                            }
-
                             showDialog<void>(
                                 context: context,
                                 builder: (BuildContext context) =>
-                                    OrderDialogue(chosenOrders));
+                                    OrderDialogue(order));
                             //
                           },
                           title: Center(child: Text(order.customerName)),

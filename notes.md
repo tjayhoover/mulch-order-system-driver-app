@@ -14,3 +14,10 @@ Maybe make the dialogue a seperate widget whose code is in another file. Somethi
 
 ## The UI
 * Figure out why "color.transparent" doesn't actually look transparent. Or maybe it does?
+
+
+## Ideas
+
+* When the user selects an order, add a button that allows them to see the closest addresses.
+* This is the way. Forget writing a complex algorithm that puts orders in the optimal order
+* I mean, that would be cool, but this is just peachy. It's what I would want.
