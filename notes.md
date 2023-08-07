@@ -14,6 +14,7 @@ Maybe make the dialogue a seperate widget whose code is in another file. Somethi
 
 ## The UI
 * Figure out why "color.transparent" doesn't actually look transparent. Or maybe it does?
+* Add multiple selection of orders with long press
 
 
 ## Ideas

@@ -22,9 +22,7 @@ class Dashboard extends StatelessWidget {
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
             ),
           ),
-          SizedBox(
-            width: 500,
-            height: 300,
+          Expanded(
             child: BlocBuilder<MulchOrderCubit, MulchOrderState>(
               builder: (context, state) {
                 if (state is MulchOrdersLoadedState) {
